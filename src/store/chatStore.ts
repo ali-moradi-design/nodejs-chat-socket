@@ -135,12 +135,8 @@ export class ChatStore {
         for (const roomId of rooms) {
           this.presence.get(roomId)?.delete(userId);
         }
-      } else {
-        // Still online via another tab — just leave this socket's rooms tracking
-        for (const roomId of rooms) {
-          // keep presence
-        }
       }
+      // If still online via another tab, keep room presence as-is.
     }
     return rooms;
   }

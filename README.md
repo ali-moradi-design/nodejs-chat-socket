@@ -28,6 +28,8 @@ Companion frontend: [nodejs-chat-web](https://github.com/ali-moradi-design/nodej
 | Input | Zod schemas on all socket + REST payloads |
 | Presence | Cleanup on disconnect / multi-tab aware |
 
+See [SECURITY.md](./SECURITY.md) for the threat model and production checklist.
+
 ## Quick start
 
 ```bash
@@ -78,16 +80,9 @@ socket.emit('message:history', { roomId, afterId, limit: 50 }, (res) => {
 See `.env.example`. Important vars:
 
 - `PORT`, `HOST`
-- `CORS_ORIGINS` — comma-separated origins
+- `CORS_ORIGINS` — comma-separated origins (required in production)
 - `RATE_LIMIT_PER_SEC`, `MAX_MESSAGE_LENGTH`
 - `PERSISTENCE_PATH` — JSON store path
-
-## Security notes
-
-- This is a **guest** chat: anyone who knows the URL can join with any display name.
-- Do not expose without TLS termination and a tight CORS allowlist in production.
-- Persistence file may contain chat content — protect filesystem permissions.
-- Rate limits are per-socket, not global IP quotas.
 
 ## License
 
